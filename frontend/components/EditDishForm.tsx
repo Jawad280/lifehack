@@ -81,7 +81,10 @@ const EditDishForm = ({
     defaultValues: {
       dishName: dish.dishName,
       price: dish.price,
-      ingredients: dish.ingredients,
+      ingredients: dish.ingredients.map((ing) => ({
+        itemId: ing.item_id || "",
+        amount: ing.amount,
+      })),
     },
   });
 
@@ -89,15 +92,6 @@ const EditDishForm = ({
     control: form.control,
     name: "ingredients",
   });
-
-  useEffect(() => {
-    dish.ingredients.forEach((ing) => {
-      append({
-        itemId: ing.itemUsed.id || "",
-        amount: ing.amount,
-      });
-    });
-  }, [setIsFormVisible]);
 
   const handleAddIngredient = () => {
     if (items.length > 0) {
@@ -275,7 +269,7 @@ const EditDishForm = ({
           </Button>
 
           <Button type="submit" className="flex-1">
-            Create Dish
+            Update Dish
           </Button>
         </div>
       </form>

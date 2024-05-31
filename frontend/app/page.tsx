@@ -1,3 +1,4 @@
+import PredictionPeriod from "@/components/PredictionPeriod";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -6,8 +7,7 @@ export default function Home() {
       <div className="font-bold text-[28px]">Dashboard</div>
 
       <div>
-        <div>Next Week Predictions</div>
-        <Button>Predict</Button>
+        <PredictionPeriod />
       </div>
 
       <div>Graph to show the predicted amount of item required</div>

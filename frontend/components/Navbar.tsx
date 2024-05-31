@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Activity } from "lucide-react";
 
 const Navbar = () => {
   const path = usePathname();
@@ -13,8 +14,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full flex p-6 justify-between items-center shadow-sm bg-white z-50">
-      <div className="gap-4 flex">
+    <div className="w-full flex p-6 justify-between items-center shadow-sm bg-white z-50 fixed top-0">
+      <div className="flex gap-2 items-center">
+        <Activity size={24} />
+        <div className="font-bold text-[18px]">Inventorize</div>
+      </div>
+
+      <div className="flex gap-4">
         <Link href="/" className={navStyle("/")}>
           Dashboard
         </Link>

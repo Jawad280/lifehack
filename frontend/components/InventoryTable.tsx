@@ -12,8 +12,10 @@ import { supabase } from "@/lib/db";
 import { Pencil, Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import EditItemForm from "./EditItemForm";
+import Loading from "./Loading";
 
 const InventoryTable = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [items, setItems] = useState<Item[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [item, setItem] = useState<Item>({
@@ -24,6 +26,7 @@ const InventoryTable = () => {
 
   async function getAllItems() {
     try {
+      setIsLoading(true);
       const { data, error } = await supabase.from("item").select();
 
       const allItems: Item[] =
@@ -40,6 +43,7 @@ const InventoryTable = () => {
         }) || [];
 
       setItems(allItems);
+      setIsLoading(false);
     } catch (e) {
       console.error(e);
     }
@@ -57,6 +61,10 @@ const InventoryTable = () => {
   useEffect(() => {
     getAllItems();
   }, [isFormVisible]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (isFormVisible) {
     return (

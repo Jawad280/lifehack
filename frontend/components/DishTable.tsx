@@ -11,10 +11,11 @@ import {
 import { supabase } from "@/lib/db";
 import { Pencil, Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
-import CreateDishForm from "./CreateDishForm";
+import Loading from "./Loading";
 import EditDishForm from "./EditDishForm";
 
 const DishTable = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [dishes, setDishes] = useState<Dish[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [dish, setDish] = useState<Dish>({
@@ -26,6 +27,7 @@ const DishTable = () => {
   async function getAllDishes() {
     try {
       // Fetch all dishes
+      setIsLoading(true);
       const { data: dishData, error: dishError } = await supabase
         .from("dish")
         .select();
@@ -72,6 +74,8 @@ const DishTable = () => {
       } else {
         setDishes([]);
       }
+
+      setIsLoading(false);
     } catch (e) {
       console.error(e);
     }
@@ -89,6 +93,10 @@ const DishTable = () => {
   useEffect(() => {
     getAllDishes();
   }, [isFormVisible]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (isFormVisible) {
     return (
