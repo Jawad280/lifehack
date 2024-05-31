@@ -22,9 +22,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-const PredictionPeriod = () => {
-  const [period, setPeriod] = useState<string>("day");
-
+const PredictionPeriod = ({
+  setIsDataVisible,
+  period,
+  setPeriod,
+}: {
+  setIsDataVisible: (isDataVisible: boolean) => void;
+  period: string;
+  setPeriod: (period: string) => void;
+}) => {
   const formSchema = z.object({
     period: z.enum(["day", "range", "month"]),
     day: z.string().date().optional(),
@@ -48,6 +54,7 @@ const PredictionPeriod = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    setIsDataVisible(true);
   }
 
   return (
