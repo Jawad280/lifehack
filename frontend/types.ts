@@ -7,12 +7,14 @@ type Item = {
 }
 
 type Ingredient = {
+    id?: string,
     itemUsed: Item,
     amount: number
 }
 
 type Dish = {
-    name: string,
+    id ?: string
+    dishName: string,
     price: number,
     ingredients: Ingredient[]
 }

@@ -63,6 +63,8 @@ const EditItemForm = ({
           quantity_in_stock: values.quantityInStock,
         })
         .eq("id", item.id || "");
+
+      setIsFormVisible(false);
     } catch (e) {
       console.error(e);
     }

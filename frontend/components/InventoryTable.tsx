@@ -56,7 +56,7 @@ const InventoryTable = () => {
 
   useEffect(() => {
     getAllItems();
-  }, []);
+  }, [isFormVisible]);
 
   if (isFormVisible) {
     return (
@@ -72,9 +72,10 @@ const InventoryTable = () => {
       <TableHeader>
         <TableRow>
           <TableHead>Item</TableHead>
+          <TableHead>Quantity in Stock</TableHead>
           <TableHead>Unit</TableHead>
           <TableHead>Unit Price</TableHead>
-          <TableHead>Quantity in Stock</TableHead>
+
           <TableHead className="w-[150px]"></TableHead>
         </TableRow>
       </TableHeader>
@@ -82,9 +83,10 @@ const InventoryTable = () => {
         {items.map((item) => (
           <TableRow key={item.id}>
             <TableCell className="font-medium">{item.itemName}</TableCell>
+            <TableCell>{item.quantityInStock}</TableCell>
             <TableCell>{item.unit}</TableCell>
             <TableCell>${item.unitPrice}</TableCell>
-            <TableCell>{item.quantityInStock}</TableCell>
+
             <TableCell className="flex items-center justify-between">
               <Pencil
                 size={24}

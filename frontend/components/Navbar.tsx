@@ -16,10 +16,13 @@ const Navbar = () => {
     <div className="w-full flex p-6 justify-between items-center shadow-sm bg-white z-50">
       <div className="gap-4 flex">
         <Link href="/" className={navStyle("/")}>
-          Home
+          Dashboard
         </Link>
         <Link href="/inventory" className={navStyle("/inventory")}>
           Inventory
+        </Link>
+        <Link href="/dish" className={navStyle("/dish")}>
+          Dish
         </Link>
         <Link href="/track" className={navStyle("/track")}>
           Track
