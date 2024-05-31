@@ -3,6 +3,8 @@ import DailyLogForm from "@/components/DailyLogForm";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
+import Papa from "papaparse";
+import { supabase } from "@/lib/db"; 
 
 const Page = () => {
   const [file, setFile] = useState(null);
@@ -13,8 +15,39 @@ const Page = () => {
   };
 
   const handleFileUpload = () => {
-    console.log(file);
+    if (!file) {
+      console.error("No file selected");
+      return;
+    }
+
+    Papa.parse(file, {
+      header: true,
+      complete: async (results) => {
+        if (results.errors.length > 0) {
+          console.error("Errors in parsing CSV file:", results.errors);
+          return;
+        }
+
+        const data = results.data;
+        console.log("Parsed CSV data:", data);
+
+        try {
+          const { error } = await supabase.from("daily_sales").insert(data);
+          if (error) {
+            console.error("Error inserting data:", error);
+          } else {
+            console.log("Data inserted successfully");
+          }
+        } catch (error) {
+          console.error("Error during data insertion:", error);
+        }
+      },
+      error: (error) => {
+        console.error("Error parsing CSV file:", error);
+      },
+    });
   };
+
 
   return (
     <div className="min-h-screen p-8 flex flex-col items-center bg-gray-100 gap-6">
@@ -35,6 +68,7 @@ const Page = () => {
         >
           Upload File
         </button>
+  
       </div>
 
       <div className="bg-slate-200 p-8 rounded-md shadow-sm">
@@ -55,5 +89,4 @@ const Page = () => {
     </div>
   );
 };
-
 export default Page;
