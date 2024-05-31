@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import CreateDishForm from "@/components/CreateDishForm";
 import DishTable from "@/components/DishTable";
 
-const page = () => {
+const Page = () => {
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   if (isFormVisible) {
@@ -27,4 +27,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

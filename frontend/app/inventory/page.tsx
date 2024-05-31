@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import CreateItemForm from "@/components/CreateItemForm";
 import InventoryTable from "@/components/InventoryTable";
 
-const page = () => {
+const Page = () => {
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   if (isFormVisible) {
@@ -29,4 +29,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
