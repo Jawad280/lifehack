@@ -33,6 +33,8 @@ const EditDishForm = ({
 }) => {
   const [items, setItems] = useState<Item[]>([]);
 
+  console.log(dish);
+
   async function getAllItems() {
     try {
       const { data, error } = await supabase.from("item").select();

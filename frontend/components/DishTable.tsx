@@ -74,10 +74,10 @@ const DishTable = () => {
       } else {
         setDishes([]);
       }
-
-      setIsLoading(false);
     } catch (e) {
       console.error(e);
+    } finally {
+      setIsLoading(false);
     }
   }
 

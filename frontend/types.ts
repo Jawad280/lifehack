@@ -7,9 +7,9 @@ type Item = {
 }
 
 type Ingredient = {
-    id?: string,
-    itemUsed: Item,
-    amount: number
+    amount: number,
+    dish_id?: string,
+    item_id?: string,
 }
 
 type Dish = {
