@@ -4,12 +4,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
 import Papa from "papaparse";
-import { supabase } from "@/lib/db"; // Ensure this path is correct
+import { supabase } from "@/lib/db"; 
 
 const Page = () => {
   const [file, setFile] = useState(null);
+  const [isSpecialOccasion, setIsSpecialOccasion] = useState<boolean>(false);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     setFile(e.target.files[0]);
   };
 
@@ -47,6 +48,7 @@ const Page = () => {
     });
   };
 
+
   return (
     <div className="min-h-screen p-8 flex flex-col items-center bg-gray-100 gap-6">
       <h1 className="text-2xl font-bold mb-6">Track Daily Production</h1>
@@ -68,8 +70,23 @@ const Page = () => {
         </button>
   
       </div>
+
+      <div className="bg-slate-200 p-8 rounded-md shadow-sm">
+        <div className="flex justify-between items-center">
+          <div className="font-bold text-[20px]">Daily Log Form</div>
+
+          <div className="flex items-center space-x-2 py-4">
+            <Checkbox
+              checked={isSpecialOccasion}
+              onCheckedChange={() => setIsSpecialOccasion(!isSpecialOccasion)}
+            />
+            <Label>Special Occasion</Label>
+          </div>
+        </div>
+
+        <DailyLogForm isSpecialOccasion={isSpecialOccasion} />
+      </div>
     </div>
   );
 };
-
 export default Page;
