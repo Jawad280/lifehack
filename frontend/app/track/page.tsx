@@ -1,15 +1,16 @@
 "use client";
+import DailyLogForm from "@/components/DailyLogForm";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
 import Papa from "papaparse";
 import { supabase } from "@/lib/db"; // Ensure this path is correct
 
 const Page = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   const handleFileUpload = () => {
@@ -47,10 +48,12 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen p-8 flex flex-col items-center bg-gray-100">
+    <div className="min-h-screen p-8 flex flex-col items-center bg-gray-100 gap-6">
       <h1 className="text-2xl font-bold mb-6">Track Daily Production</h1>
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg flex flex-col items-center">
-        <h2 className="text-xl font-semibold mb-4">Upload Past Sales Records</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          Upload Past Sales Records
+        </h2>
         <input
           type="file"
           accept=".csv"
@@ -63,6 +66,7 @@ const Page = () => {
         >
           Upload File
         </button>
+  
       </div>
     </div>
   );
