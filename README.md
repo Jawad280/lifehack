@@ -1,5 +1,8 @@
 # Inventorize: Advanced Demand Forecasting and Inventory Management
 
+### Video Demo:
+https://drive.google.com/file/d/1OkpA5AVxOdAkPfXt6NeCvEovzL0emTkh/view?usp=sharing
+
 ## Overview
 Inventorize leverages cutting-edge machine learning technologies to empower food businesses with accurate demand prediction and efficient inventory management. By analyzing historical data, our application predicts the necessary volume of food items needed, allowing businesses to optimize their supply chains and reduce food waste significantly.
 
