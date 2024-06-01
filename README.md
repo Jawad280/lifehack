@@ -3,6 +3,10 @@
 ### Video Demo:
 https://drive.google.com/file/d/1OkpA5AVxOdAkPfXt6NeCvEovzL0emTkh/view?usp=sharing
 
+## Chosen Problem Statement:
+Theme 2 Food Security, Subtheme 1: Enhancing Food Security:
+“As the majority of Singapore's food supply is imported, optimising the supply chain is critical. Implement algorithms that can predict demand, manage inventory and optimise logistics to reduce food waste and streamline supply chain processes.”
+
 ## Overview
 Inventorize leverages cutting-edge machine learning technologies to empower food businesses with accurate demand prediction and efficient inventory management. By analyzing historical data, our application predicts the necessary volume of food items needed, allowing businesses to optimize their supply chains and reduce food waste significantly.
 
