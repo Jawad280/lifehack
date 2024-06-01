@@ -1,69 +1,62 @@
-Inventorize
+# Inventorize: Advanced Demand Forecasting and Inventory Management
 
-Accurate Demand Prediction:
-Our web application utilizes advanced machine learning algorithms to analyze historical data and predict the volume of food items required on a given day. By accurately forecasting this volume, shop owners can better gauge the amount of ingredients and supplies needed, ensuring they produce the right amount of food. 
+## Overview
+Inventorize leverages cutting-edge machine learning technologies to empower food businesses with accurate demand prediction and efficient inventory management. By analyzing historical data, our application predicts the necessary volume of food items needed, allowing businesses to optimize their supply chains and reduce food waste significantly.
 
-Inventory Management:
-The application provides real-time insights into optimal inventory levels. Knowing the exact volume to produce helps shop owners maintain the right amount of stock for ingredients and supplies. This reduces the risk of overstocking and understocking, minimizing food waste due to spoilage and ensuring sufficient stock to meet demand.
+### Key Features
 
-Logistics Optimization:
-With precise demand forecasts, the supply chain can be optimized for efficient distribution. The application helps optimize the supply chain by ensuring that the right quantities of food are transported to the right locations at the right times, reducing transportation costs and minimizing delays.
+**Accurate Demand Prediction**
+- Our web application utilizes a Random Forest regression model to analyze past sales data and accurately predict future demand. This enables restaurant owners to precisely gauge the amount of ingredients required, optimizing food production.
 
-Reduction in Food Waste:
-Better planning and demand prediction lead to a significant reduction in food waste. Suppliers can avoid overproduction and manage their inventory more effectively, contributing to a more sustainable food supply chain.
+**Inventory Management**
+- The application provides actionable insights into inventory levels, helping businesses maintain optimal stock. This minimizes risks associated with overstocking or understocking, thereby reducing spoilage and ensuring availability to meet customer demand.
 
+**Logistics Optimization**
+- By providing precise demand forecasts, our tool aids in streamlining the supply chain, ensuring efficient distribution of food items to various locations, which in turn reduces transportation costs and delivery delays.
 
-To address the problem statement, we explored two different machine learning models  to predict daily food demand based on historical sales data. Firstly, we employed a Random Forest regressor, which handles both numerical and categorical data and provides a robust solution to non-linear data patterns.
+**Reduction in Food Waste**
+- Enhanced planning and accurate demand forecasts lead to a substantial reduction in food waste. Our application assists suppliers in managing their production more effectively, promoting a sustainable food supply chain.
 
-Implementation steps:
+## Technical Implementation
 
-Data Preprocessing
-We used a sample data set on food orders from a restaurant. The columns were converted to the right format and missing values were accounted for.
-Feature Engineering
-From the ‘Order Date’, the day and month were derived. The 'Item Name' column is treated as a categorical variable and is transformed using one-hot encoding. This process converts each unique item name into a separate binary (0 or 1) feature, suitable for regression analysis.
-Model Training
-Features  include the day of the week, month, and one-hot encoded item names. The target (y) is the 'Quantity', which represents the total items sold per day for each item. The dataset is split into training and testing sets using a random seed for reproducibility. A Random Forest regressor is initialized with 100 trees and fitted on the training data. Random Forests are used due to their ability to model complex relationships without severe overfitting.
-Model Evaluation
-After training, the model's performance is evaluated on the test set using the Mean Squared Error (MSE) metric. This metric provides a measure of the average squared difference between the actual and predicted quantities, offering insight into the model's accuracy.
-Model Usage 
-The trained model can predict the required quantity of each item for a given day by inputting the corresponding features (day of the week, month, and item type through one-hot encoding) into the model. The model and the one-hot encoder can be saved using joblib or a similar library to preserve the state for later use in production or further evaluation.
+### Data Processing and Model Training
 
-We also explored the possibility of leveraging the Prophet model, a powerful forecasting tool developed by Facebook. Prophet is designed to handle time series data and is particularly effective for daily sales predictions due to its robustness in dealing with missing data and outliers, as well as its ability to capture seasonal effects.
+**Data Preprocessing**
+- The initial dataset, consisting of food orders from a restaurant, undergoes formatting to ensure accurate date parsing and handling of missing values.
 
-Prophet Model for Daily Sales Prediction:
-The Prophet model will be trained using historical sales data, which includes various factors such as daily sales volumes, dates, and potential external factors influencing sales. By incorporating this data, Prophet can create a predictive model that forecasts future daily sales with high accuracy.
+**Feature Engineering**
+- We extract meaningful features from the 'Order Date', such as day and month, and employ one-hot encoding on the 'Item Name' to transform it into a model-ready format.
 
-Key Features of the Prophet Model:
-Handling Seasonality: Prophet can capture weekly and yearly seasonality patterns in sales data, making it ideal for understanding and predicting trends.
+**Model Training and Evaluation**
+- The features include the day of the week, month, and encoded item names, with 'Quantity' as the target variable. We split the data into training and testing sets, train a Random Forest model, and evaluate its performance using the Mean Squared Error (MSE) metric.
 
-Dealing with Outliers: The model is robust to outliers, which ensures that sudden spikes or drops in sales do not disproportionately affect the overall prediction accuracy.
+**Model Usage**
+- The trained model predicts the required quantity for each item based on the day and month. It can be saved and loaded for future use, ensuring consistency in predictions.
 
-Incorporating Holidays and Special Occasions: Prophet allows for the inclusion of holiday effects and special events, which is crucial for accurately forecasting sales during these periods.
+### Integration of Prophet Model
 
-Implementation Steps:
+**Prophet Model Implementation**
+- We explored using Facebook's Prophet model for its robustness in handling time series data. Prophet is adept at managing missing data, outliers, and capturing seasonal trends, making it ideal for daily sales predictions.
 
-Data Collection and Preprocessing:
-We gathered historical sales data from various sources, including sales records and inventory levels, which was stored in Supabase. This data was cleaned and preprocessed in a Jupyter Notebook to ensure it was ready for analysis.
+**Key Features of the Prophet Model**
+- Handles seasonality and outliers effectively and incorporates special occasions and holidays into its forecasts.
 
-Model Selection and Training:
-The Prophet model was implemented and trained in a Jupyter Notebook. We used the historical sales data to train the model, capturing patterns and trends specific to our dataset. The trained model was then used to generate sales forecasts.
+### Application Development
 
-Application Development:
+**Backend**
+- The backend, implemented in a Jupyter Notebook, preprocesses data, trains the Prophet model, and handles forecast generation.
 
-Backend (Prophet Model in Jupyter Notebook):
+**Database Management**
+- We use Supabase for storing and managing both historical and forecasted sales data, facilitating real-time data operations and integration with the frontend.
 
-The Prophet model was developed and trained in a Jupyter Notebook. This notebook is used to preprocess data, train the model, and generate forecasts.
-The forecasts generated by the Prophet model are stored in Supabase for easy access and integration with the frontend.
-Database (Supabase):
+**Frontend**
+- Developed with Next.js and TypeScript, the frontend offers a user-friendly interface for data input, tracking, and visualization. It interacts seamlessly with Supabase to retrieve and display data.
 
-Supabase was used as the database to store historical sales data and the forecasted sales data generated by the Prophet model.
-Supabase provides real-time capabilities and easy integration with the frontend via RESTful APIs.
+**Dashboard and Reporting**
+- A comprehensive dashboard displays predictions, current inventory statuses, and provides optimization recommendations. This tool is invaluable for generating detailed reports for stakeholders.
 
-Frontend (Next.js Application):
+## Conclusion
 
-The frontend was developed using Next.js and TypeScript to provide a user-friendly interface for data input, tracking, and visualization.
-Users can upload CSV files containing historical sales data, which are processed and stored in Supabase.
-The frontend communicates with the Supabase database to fetch historical data and display sales forecasts generated by the Prophet model.
+Inventorize stands at the forefront of technological innovation in food service management. By integrating sophisticated forecasting models like Random Forest and Prophet with a robust web application, we provide unparalleled support to businesses aiming to optimize their operations and reduce environmental impact.
 
-Dashboard and Reporting:
-We implemented a dashboard in the Next.js frontend to display sales predictions, current inventory levels, and optimization recommendations. The dashboard provides real-time insights and allows users to generate reports for different stakeholders.
+---
