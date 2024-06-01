@@ -1,7 +1,7 @@
 # Inventorize: Advanced Demand Forecasting and Inventory Management
 
 ### Video Demo:
-https://drive.google.com/file/d/1OkpA5AVxOdAkPfXt6NeCvEovzL0emTkh/view?usp=sharing
+https://youtu.be/0YwHN38rBs8
 
 ## Chosen Problem Statement:
 Theme 2 Food Security, Subtheme 1: Enhancing Food Security:
